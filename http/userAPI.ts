@@ -7,7 +7,6 @@ interface DecodedToken {
   }
 
 export const registration = async (username: string, first_name: string, last_name: string, email: string, password: string) => {
-  console.log('Входим в регистрацию!')
     const {data} = await $host.post('registration/', {email, first_name, last_name, password, username})
     return data;
 }
