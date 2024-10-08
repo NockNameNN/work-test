@@ -25,3 +25,9 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  button {
+    @apply p-2 border-2 rounded-lg hover:bg-zinc-600
+  }
+}
