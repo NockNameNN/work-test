@@ -20,7 +20,7 @@ const CreateArticleForm = () => {
       setTitle('');
       setContent('');
       setImage(null);
-    } catch (e) {
+    } catch {
       setError('Ошибка при добавлении статьи');
     }
   };

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getArticles } from '@/http/articleAPI';
 import CreateArticleForm from '@/components/CreateArticleForm';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface Author {
   id: number;
@@ -53,7 +54,7 @@ export default function Home () {
               className="mb-8 p-4 border rounded-lg shadow-lg cursor-pointer"
               onClick={() => {router.push(`${article.id}`)}}
             >
-              <img src={article.image} alt={article.title} className="w-full h-64 object-cover mb-4 rounded-lg"/>
+              {article.image && <Image src={article.image} width={500} height={500} alt={article.title} className="w-full h-64 object-cover mb-4 rounded-lg"/>}
               <h2 className="text-xl font-bold mb-2">{article.title}</h2>
               <p className="text-gray-600">Автор: {article.author.username}</p>
               <p className="text-gray-500 text-sm mb-4">Создано: {new Date(article.created).toLocaleDateString()}</p>

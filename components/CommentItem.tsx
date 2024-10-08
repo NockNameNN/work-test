@@ -5,11 +5,11 @@ interface CommentProps {
   id: string,
   username: string,
   content: string,
-  children: CommentProps[],
+  childrenComment: CommentProps[],
   handleReplay: (commentId: string) => void;
 }
 
-const CommentItem: React.FC<CommentProps> = ({ id, username, content, children, handleReplay }) => {
+const CommentItem: React.FC<CommentProps> = ({ id, username, content, childrenComment, handleReplay }) => {
   const router = useRouter();
   const url = usePathname()
 
@@ -18,15 +18,15 @@ const CommentItem: React.FC<CommentProps> = ({ id, username, content, children, 
       <p className='font-semibold'>{username}</p>
       <p onClick={() => {router.push(`${url}/comments/${id}`)}}>{content}</p>
       <button onClick={() => {handleReplay(id)}}>Ответить</button>
-      {children && children.length > 0 && (
+      {childrenComment && childrenComment.length > 0 && (
         <div className='ml-4'>
-          {children.map((childComment: CommentProps) => (
+          {childrenComment.map((childComment: CommentProps) => (
             <CommentItem
               key={childComment.id} 
               id={childComment.id} 
               username={childComment.username} 
               content={childComment.content} 
-              children={childComment.children} 
+              childrenComment={childComment.childrenComment} 
               handleReplay={handleReplay}
             />
           ))}

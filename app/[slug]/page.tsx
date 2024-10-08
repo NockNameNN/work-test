@@ -90,7 +90,7 @@ const Article = () => {
     <div>
       <h1 className='text-[25px] font-bold'>{article.title}</h1>
       <p>Автор: {article.author.username}</p>
-      <Image src={article.image} alt={article.title} width={500} height={500}/>
+      {article.image && <Image src={article.image} alt={article.title} width={500} height={500}/>}
       <p>{article.content}</p>
       
       {isAuthor && !isEditing && (
@@ -150,7 +150,7 @@ const Article = () => {
           id={comment.id} 
           username={comment.username} 
           content={comment.content} 
-          children={comment.children} 
+          childrenComment={comment.children} 
           handleReplay={handleReply}
         />
       ))}

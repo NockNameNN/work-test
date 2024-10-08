@@ -26,7 +26,7 @@ const CommentPage = () => {
       }
     };
     fetchComment();
-  }, [id]);
+  }, [id, articleId]);
 
   const handleEdit = () => {
     setIsEditing(true);
