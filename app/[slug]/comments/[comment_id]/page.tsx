@@ -8,7 +8,6 @@ import { selectUserId } from '@/redux-toolkit/slices/userSlice';
 const CommentPage = () => {
   const router = useRouter();
   const {slug: articleId, comment_id: id} = useParams<{ slug: string; comment_id: string }>();
-  console.log(articleId, id);
   const [comment, setComment] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState('');
@@ -22,7 +21,7 @@ const CommentPage = () => {
         const data = await getCommentById(articleId, id);
         setComment(data);
         setNewContent(data.content);
-      } catch (e) {
+      } catch {
         setError('Ошибка загрузки комментария');
       }
     };
@@ -43,7 +42,7 @@ const CommentPage = () => {
       setSuccess(true);
       setComment({ ...comment, content: newContent });
       setIsEditing(false);
-    } catch (e) {
+    } catch {
       setError('Ошибка при изменении комментария');
     }
   };
@@ -53,7 +52,7 @@ const CommentPage = () => {
     try {
       await deleteComment(articleId, id);
       router.push(`/`);
-    } catch (e) {
+    } catch {
       setError('Ошибка при удалении комментария');
     }
   };

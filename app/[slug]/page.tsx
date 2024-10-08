@@ -5,6 +5,7 @@ import { getArticleById, updateArticle, deleteArticle, getCommentsByArticleId, c
 import { useAppSelector } from '@/redux-toolkit/hooks';
 import { selectUserId } from '@/redux-toolkit/slices/userSlice';
 import CommentItem from '@/components/CommentItem';
+import Image from 'next/image';
 
 const Article = () => {
   const id = usePathname();
@@ -32,7 +33,7 @@ const Article = () => {
           setTitle(data.title);
           setContent(data.content);
           setImage(data.image || null); 
-        } catch (e) {
+        } catch {
           setError('Ошибка загрузки статьи');
         }
       };
@@ -52,7 +53,7 @@ const Article = () => {
       await updateArticle(id, title, content, image);
       setArticle({ ...article, title, content, image });
       setIsEditing(false);
-    } catch (e) {
+    } catch {
       setError('Ошибка при изменении статьи');
     }
   };
@@ -62,7 +63,7 @@ const Article = () => {
     try {
       await deleteArticle(id);
       router.push('/');
-    } catch (e) {
+    } catch {
       setError('Ошибка при удалении статьи');
     }
   };
@@ -89,7 +90,7 @@ const Article = () => {
     <div>
       <h1 className='text-[25px] font-bold'>{article.title}</h1>
       <p>Автор: {article.author.username}</p>
-      <img src={article.image} alt={article.title} />
+      <Image src={article.image} alt={article.title} width={500} height={500}/>
       <p>{article.content}</p>
       
       {isAuthor && !isEditing && (

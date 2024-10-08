@@ -23,7 +23,7 @@ const AuthForm: React.FC = () => {
 
     } catch (error: any) {
       alert(`Ошибка`);
-      console.error(e);
+      console.error(error);
     }
   };
 
