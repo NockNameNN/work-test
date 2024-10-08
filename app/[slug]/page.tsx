@@ -148,7 +148,7 @@ const Article = () => {
         <CommentItem
           key={comment.id}
           id={comment.id} 
-          username={comment.username} 
+          author={comment.author} 
           content={comment.content} 
           childrenComment={comment.children} 
           handleReplay={handleReply}
