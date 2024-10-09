@@ -7,11 +7,11 @@ interface CommentProps {
     username: string
   },
   content: string,
-  childrenComment: CommentProps[],
+  children: CommentProps[],
   handleReplay: (commentId: string) => void;
 }
 
-const CommentItem: React.FC<CommentProps> = ({ id, author, content, childrenComment, handleReplay }) => {
+const CommentItem: React.FC<CommentProps> = ({ id, author, content, children, handleReplay }) => {
   const router = useRouter();
   const url = usePathname()
   return (
@@ -19,15 +19,16 @@ const CommentItem: React.FC<CommentProps> = ({ id, author, content, childrenComm
       <p className='font-semibold'>{author.username}</p>
       <p onClick={() => {router.push(`${url}/comments/${id}`)}}>{content}</p>
       <button onClick={() => {handleReplay(id)}}>Ответить</button>
-      {childrenComment && childrenComment.length > 0 && (
+      {children && children.length > 0 && (
         <div className='ml-4'>
-          {childrenComment.map((childComment: CommentProps) => (
+          {children.map((childComment: CommentProps) => (
             <CommentItem
               key={childComment.id} 
               id={childComment.id} 
               author={childComment.author}
               content={childComment.content} 
-              childrenComment={childComment.childrenComment} 
+              // eslint-disable-next-line react/no-children-prop
+              children={childComment.children} 
               handleReplay={handleReplay}
             />
           ))}

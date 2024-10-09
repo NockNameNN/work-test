@@ -150,7 +150,8 @@ const Article = () => {
           id={comment.id} 
           author={comment.author} 
           content={comment.content} 
-          childrenComment={comment.children} 
+          // eslint-disable-next-line react/no-children-prop
+          children={comment.children} 
           handleReplay={handleReply}
         />
       ))}
