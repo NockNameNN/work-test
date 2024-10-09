@@ -22,6 +22,10 @@ const Article = () => {
   const userID = useAppSelector(selectUserId);
 
   useEffect(() => {
+    loadArticle(id);
+  }, [id]);
+
+  const loadArticle = (id: string) => {
     if (id) {
       const fetchArticle = async () => {
         try {
@@ -39,7 +43,7 @@ const Article = () => {
       };
       fetchArticle();
     }
-  }, [id]);
+  }
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
@@ -76,6 +80,7 @@ const Article = () => {
     e.preventDefault();
     await createComment(id, comment, parentCommentId)
     setComment('');
+    loadArticle(id);
   }
 
   if (error) {
@@ -138,6 +143,7 @@ const Article = () => {
         <textarea
           maxLength={150}
           className='text-black w-64'
+          value={comment}
           onChange={e => setComment(e.target.value)}
         />
         <button onClick={handleCreateComment}>Оставить комментарий</button>
