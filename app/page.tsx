@@ -58,7 +58,7 @@ export default function Home () {
               <h2 className="text-xl font-bold mb-2">{article.title}</h2>
               <p className="text-gray-600">Автор: {article.author.username}</p>
               <p className="text-gray-500 text-sm mb-4">Создано: {new Date(article.created).toLocaleDateString()}</p>
-              <p className="text-gray-700">{article.content}</p>
+              <p className="text-gray-700 truncate">{article.content}</p>
             </div>
           ))
         ) : (

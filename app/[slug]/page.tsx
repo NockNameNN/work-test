@@ -96,7 +96,7 @@ const Article = () => {
       <h1 className='text-[25px] font-bold'>{article.title}</h1>
       <p>Автор: {article.author.username}</p>
       {article.image && <Image src={article.image} alt={article.title} width={500} height={500}/>}
-      <p>{article.content}</p>
+      <p className='w-3/4 break-all'>{article.content}</p>
       
       {isAuthor && !isEditing && (
         <>
@@ -159,6 +159,7 @@ const Article = () => {
           // eslint-disable-next-line react/no-children-prop
           children={comment.children} 
           handleReplay={handleReply}
+          loadArticle={loadArticle}
         />
       ))}
     </div>
